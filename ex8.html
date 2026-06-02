@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Preferences</title>
+<style>
+body { font-family: sans-serif; padding: 20px; }
+select, button { padding: 5px; margin-top: 10px; }
+#status { margin-top: 10px; color: green; }
+</style>
+</head>
+<body>
+<h2>Choose Preferred Event Type</h2>
+
+<select id="prefSelect" onchange="savePref()">
+  <option value="">Select...</option>
+  <option value="music">Music</option>
+  <option value="tech">Technology</option>
+  <option value="sports">Sports</option>
+</select>
+
+<br>
+<button onclick="clearPrefs()">Clear Preferences</button>
+<div id="status"></div>
+
+<script>
+function loadPref() {
+  const saved = localStorage.getItem('eventType');
+  if (saved) {
+    document.getElementById('prefSelect').value = saved;
+    document.getElementById('status').textContent = 'Loaded preference: ' + saved;
+  }
+}
+
+function savePref() {
+  const val = document.getElementById('prefSelect').value;
+  if (val) {
+    localStorage.setItem('eventType', val);
+    sessionStorage.setItem('lastSelected', val);
+    document.getElementById('status').textContent = 'Saved preference: ' + val;
+  }
+}
+
+function clearPrefs() {
+  localStorage.removeItem('eventType');
+  sessionStorage.clear();
+  document.getElementById('prefSelect').value = '';
+  document.getElementById('status').textContent = 'Preferences cleared!';
+}
+
+window.onload = loadPref;
+</script>
+</body>
+</html>

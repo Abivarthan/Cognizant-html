@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Feedback</title>
+<style>
+body { font-family: sans-serif; padding: 20px; }
+.container { display: flex; flex-direction: column; width: 300px; gap: 10px; }
+img { width: 100px; cursor: pointer; transition: transform 0.2s; }
+.enlarged { transform: scale(2); margin-left: 50px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Event Feedback</h2>
+  
+  <input type="text" id="phone" placeholder="Phone Number" onblur="validatePhone()">
+  <span id="phoneError" style="color:red; font-size:12px;"></span>
+
+  <select id="eventSelect" onchange="showFee()">
+    <option value="">Select Event</option>
+    <option value="10">Music ($10)</option>
+    <option value="20">Sports ($20)</option>
+    <option value="0">Free Meetup</option>
+  </select>
+  <div id="feeDisplay"></div>
+
+  <textarea id="feedback" placeholder="Feedback" rows="4" onkeyup="countChars()"></textarea>
+  <div>Characters: <span id="charCount">0</span></div>
+
+  <button onclick="confirmSubmit()">Submit</button>
+  <div id="confirmation" style="color: green; font-weight: bold;"></div>
+
+  <br>
+  <p>Double click image to enlarge:</p>
+  <img src="https://via.placeholder.com/100" id="promoImg" ondblclick="toggleImage()">
+</div>
+
+<script>
+function validatePhone() {
+  const phone = document.getElementById('phone').value;
+  const error = document.getElementById('phoneError');
+  if (phone.length < 10) {
+    error.textContent = 'Phone must be at least 10 digits';
+  } else {
+    error.textContent = '';
+  }
+}
+
+function showFee() {
+  const fee = document.getElementById('eventSelect').value;
+  if (fee) {
+    document.getElementById('feeDisplay').textContent = 'Event Fee: $' + fee;
+  } else {
+    document.getElementById('feeDisplay').textContent = '';
+  }
+}
+
+function confirmSubmit() {
+  document.getElementById('confirmation').textContent = 'Feedback Submitted!';
+}
+
+function toggleImage() {
+  const img = document.getElementById('promoImg');
+  img.classList.toggle('enlarged');
+}
+
+function countChars() {
+  const text = document.getElementById('feedback').value;
+  document.getElementById('charCount').textContent = text.length;
+}
+</script>
+</body>
+</html>

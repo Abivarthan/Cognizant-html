@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Debugging Exercise</title>
+<style>
+body { font-family: sans-serif; padding: 20px; }
+.box { width: 100px; height: 100px; background-color: blue; color: white; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<h2>Debugging with DevTools</h2>
+<p>Use Inspect Element to change the box color manually, and check the Console tab for logs.</p>
+
+<div class="box" id="myBox">Inspect Me</div>
+<button onclick="calculate()">Run Script</button>
+
+<script>
+function calculate() {
+  const a = 10;
+  const b = 20;
+  let total = a + b;
+  
+  console.log("Values a and b:", a, b);
+  console.log("Total is:", total);
+  
+  debugger;
+  
+  if (total > 20) {
+    document.getElementById("myBox").style.backgroundColor = "green";
+  }
+}
+</script>
+</body>
+</html>

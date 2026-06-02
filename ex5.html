@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Registration Form</title>
+<style>
+body { font-family: sans-serif; padding: 20px; }
+form { display: flex; flex-direction: column; width: 300px; gap: 10px; }
+input, select, textarea { padding: 5px; }
+button { padding: 10px; cursor: pointer; }
+output { font-weight: bold; color: green; margin-top: 10px; }
+</style>
+</head>
+<body>
+<h2>Event Registration</h2>
+<form onsubmit="event.preventDefault(); document.getElementById('result').value = 'Registration Successful!';">
+  <input type="text" name="name" placeholder="Your Name" required autofocus>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="date" name="date" required>
+  <select name="eventType" required>
+    <option value="" disabled selected>Select Event Type</option>
+    <option value="music">Music</option>
+    <option value="sports">Sports</option>
+    <option value="tech">Technology</option>
+  </select>
+  <textarea name="message" placeholder="Your Message" rows="4"></textarea>
+  <button type="submit">Register</button>
+  <output id="result"></output>
+</form>
+</body>
+</html>
